@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchlättaHotellet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="icon" type="image/png" href="../img/Schlätta (1).png">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar section-content">
+            <img class="logo-img" src="../img/Schlätta-removebg-preview.png" alt="logo">
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Book</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Sign up</a>
+                </li>
+            </ul>
+
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Booking</h1>
+        <a href="../html/index.html" class="button-home">X</a>
+
+        <form id="bookingForm" onsubmit="event.preventDefault(); validateForm();">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+                <span class="error" id="nameError">Enter a valid name</span>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone" required>
+                <span class="error" id="phoneError">Enter a valid phone (10+ digits)</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <span class="error" id="emailError">Enter a valid email with @</span>
+            </div>
+            <div class="form-group">
+                <label for="rooms">Rooms</label>
+                <select id="rooms" required>
+                    <option value="" disabled selected>Select rooms</option>
+                    <option value="1">1 Room</option>
+                    <option value="2">2 Rooms</option>
+                    <option value="3">3 Rooms</option>
+                    <option value="4">4 Rooms</option>
+                    <option value="5">5+ Rooms</option>
+                </select>
+                <span class="error" id="roomsError">Select rooms</span>
+            </div>
+            <div class="form-group">
+                <label for="people">People</label>
+                <select id="people" required>
+                    <option value="" disabled selected>Select people</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5+ People</option>
+                </select>
+                <span class="error" id="peopleError">Select people</span>
+            </div>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const rooms = document.getElementById('rooms').value;
+            const people = document.getElementById('people').value;
+
+            document.querySelectorAll('.error').forEach(e => e.style.display = 'none');
+
+            if (!name || name.length < 2) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!phone || !/^\d{10,}$/.test(phone.replace(/[\s-]/g, ''))) {
+                document.getElementById('phoneError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!rooms) {
+                document.getElementById('roomsError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!people) {
+                document.getElementById('peopleError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Booking submitted!');
+                document.getElementById('bookingForm').reset();
+            }
+        }
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+    <script src="../java script/script.js"></script>
+</body>
+
+</html>
